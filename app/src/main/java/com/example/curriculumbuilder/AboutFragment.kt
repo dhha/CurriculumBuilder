@@ -1,29 +1,59 @@
 package com.example.curriculumbuilder
 
 import android.os.Bundle
+import android.view.ContextMenu
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.curriculumbuilder.databinding.FragmentAboutBinding
+import com.google.android.material.textfield.TextInputEditText
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AboutFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AboutFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-
+    private lateinit var binding: FragmentAboutBinding
+    private lateinit var listData: ArrayList<ItemData>
+    private lateinit var adapter: MyAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        var view = inflater.inflate(R.layout.fragment_about, container, false)
+        binding = FragmentAboutBinding.bind(view)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        listData = ArrayList<ItemData>()
+        listData.add(ItemData("High School", "From 2010 - 2012", R.drawable.miulogo))
+        listData.add(ItemData("College", "From 2010 - 2012", R.drawable.miulogo))
+        listData.add(ItemData("Univer sity 3", "From 2010 - 2012", R.drawable.miulogo))
+
+        adapter = MyAdapter(listData) {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Confirm")
+                .setMessage("Do you want to remove this education?")
+                .setPositiveButton("Remove") {view, id ->
+                    adapter.remove(it)
+                }
+                .setNegativeButton("Cancel") { _, _ -> }.show()
+
+        }
+        binding.educations.layoutManager = LinearLayoutManager(requireContext())
+        binding.educations.adapter = adapter
+
+        binding.fabs.setOnClickListener {
+            var txName = EditText(requireContext())
+            txName.setHint("Enter name")
+
+            AlertDialog.Builder(requireContext())
+                .setTitle("Add education")
+                .setView(txName)
+                .setPositiveButton("Add") {view, id ->
+                    var item = ItemData(txName.text.toString(), "From 2010 - 2012", R.drawable.miulogo)
+                    adapter.add(item)
+                }
+                .setNegativeButton("Cancel") { _, _ -> }.show()
+        }
+        return binding.root
     }
 }
