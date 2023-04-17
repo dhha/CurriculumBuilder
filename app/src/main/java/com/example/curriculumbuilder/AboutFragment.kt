@@ -1,7 +1,6 @@
 package com.example.curriculumbuilder
 
 import android.os.Bundle
-import android.view.ContextMenu
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +9,11 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.curriculumbuilder.databinding.FragmentAboutBinding
-import com.google.android.material.textfield.TextInputEditText
 
 class AboutFragment : Fragment() {
     private lateinit var binding: FragmentAboutBinding
     private lateinit var listData: ArrayList<ItemData>
-    private lateinit var adapter: MyAdapter
+    private lateinit var adapter: EducationAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +26,7 @@ class AboutFragment : Fragment() {
         listData.add(ItemData("College", "From 2010 - 2012", R.drawable.miulogo))
         listData.add(ItemData("Univer sity 3", "From 2010 - 2012", R.drawable.miulogo))
 
-        adapter = MyAdapter(listData) {
+        adapter = EducationAdapter(listData) {
             AlertDialog.Builder(requireContext())
                 .setTitle("Confirm")
                 .setMessage("Do you want to remove this education?")

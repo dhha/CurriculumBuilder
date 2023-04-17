@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/name"
+            android:hint="Enter company name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Company name"/>
+
+        <TextView
+            android:id="@+id/desciprtion"
+            android:hint="Enter Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Company name"/>
+</LinearLayout>

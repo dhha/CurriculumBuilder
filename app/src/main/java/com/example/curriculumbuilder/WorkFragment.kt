@@ -5,55 +5,55 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.curriculumbuilder.databinding.FragmentContactBinding
+import com.example.curriculumbuilder.databinding.FragmentWorkBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [WorkFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class WorkFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    private lateinit var binding: FragmentWorkBinding
+    private lateinit var listData: ArrayList<ItemData>
+    private lateinit var adapter: WorkAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_work, container, false)
+        var view = inflater.inflate(R.layout.fragment_work, container, false)
+        binding = FragmentWorkBinding.bind(view)
+
+        listData = ArrayList<ItemData>()
+        listData.add(ItemData("Product manager", "From 2010 - 2012", R.drawable.miulogo))
+        listData.add(ItemData("Director", "From 2010 - 2012", R.drawable.miulogo))
+        listData.add(ItemData("SEO", "From 2010 - 2012", R.drawable.miulogo))
+
+        adapter = WorkAdapter(listData) {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Confirm")
+                .setMessage("Do you want to remove this experience?")
+                .setPositiveButton("Remove") {view, id ->
+                    adapter.remove(it)
+                }
+                .setNegativeButton("Cancel") { _, _ -> }.show()
+
+        }
+        binding.works.layoutManager = LinearLayoutManager(requireContext())
+        binding.works.adapter = adapter
+
+        binding.fabs.setOnClickListener {
+            var txName = EditText(requireContext())
+            txName.setHint("Enter work name")
+            AlertDialog.Builder(requireContext())
+                .setTitle("Add work experience")
+                .setView(txName)
+                .setPositiveButton("Add") {view, id ->
+                    var item = ItemData(txName.text.toString(), "From 2010 - 2012", R.drawable.miulogo)
+                    adapter.add(item)
+                }
+                .setNegativeButton("Cancel") { _, _ -> }.show()
+        }
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment WorkFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            WorkFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

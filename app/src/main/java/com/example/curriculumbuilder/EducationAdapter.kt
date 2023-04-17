@@ -3,15 +3,15 @@ package com.example.curriculumbuilder
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.curriculumbuilder.databinding.DataItemBinding
+import com.example.curriculumbuilder.databinding.EducationItemBinding
 
-class MyAdapter(
+class EducationAdapter(
     private val items: MutableList<ItemData>,
     private val onItemClick: (ItemData) -> Unit
-) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<EducationAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
-            DataItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            EducationItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding).apply {
             this.itemView.setOnClickListener {
                 item?.let(onItemClick::invoke)
@@ -33,7 +33,7 @@ class MyAdapter(
         }
     }
 
-    class ViewHolder(val binding: DataItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(val binding: EducationItemBinding) : RecyclerView.ViewHolder(binding.root) {
         var item: ItemData? = null
     }
 
