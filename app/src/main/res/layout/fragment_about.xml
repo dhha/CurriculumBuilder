@@ -1,14 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AboutFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- About Me section -->
+    <LinearLayout
+        android:id="@+id/about_me_sectio"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="#E0E0E0">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="About Me"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data Scientist with a Master's degree in Computer Science and 3 years of experience in the field,
+I concentrate on developing innovative data-driven solutions to create tangible impacts.
+My expertise includes machine learning, deep learning, big data, visualization tools, and natural language processing.
+I have successfully collaborated on various data science projects with clients from diverse industries.
+In addition to my practical experience, I have published five research papers in Natural Language Processing,
+reflecting my commitment to advancing the field. Through my work with prestigious organizations
+such as UNDP Jordan and Open Insights, I have contributed to projects that significantly improved businesses and communities.
+As a data science lecturer at PHI Science, I shared my knowledge and expertise with future data scientists.
+I am currently pursuing a second Master's degree in Data Science and seeking opportunities
+to collaborate with organizations that recognize the value of data-driven decision-making.
+My goal is to contribute to meaningful outcomes and drive success in the organizations I work with.
+Please feel free to connect with me to discuss how we can collaborate, create valuable insights, and make a difference through data-driven solutions.." />
+
+    </LinearLayout>
+
+    <!-- Education and Skills section -->
+    <LinearLayout
+        android:id="@+id/education_skills_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="#F5F5F5"
+        android:layout_gravity="bottom">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Education and Skills"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Institu Universitaire Quisqueya Amerique, I studied Computer Sciences from 2012 - 2016,I have graduated with a Bachelor Degree in Sciences" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Maharishi International currently doing my Masters Degree in Computer Sciences from August 2022 to April 2025" />
+
+    </LinearLayout>
 
 </FrameLayout>
