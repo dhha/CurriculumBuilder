@@ -10,9 +10,9 @@ class MyTabAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fr
     override fun createFragment(position: Int): Fragment {
         return when(position){
             0 -> HomeFragment()
-//            1 -> WorkFragment()
-//            2 -> ContactFragment()
-//            3 -> HelpFragment()
+            1 -> AboutFragment()
+            2 -> WorkFragment()
+            3 -> ContactFragment()
             else -> Fragment()
 
         }
