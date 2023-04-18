@@ -25,7 +25,7 @@ class ContactFragment : Fragment() {
         }
 
         binding.phone.setOnClickListener {
-            var intent: Intent = Intent(Intent.ACTION_VIEW, Uri.parse("tel:123456789"))
+            var intent: Intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:123456789"))
             startActivity(intent);
         }
 
